@@ -1,2 +1,2 @@
-(ns models.availability (:gen-class))
+(ns models.availability)
 (defn getstr [var] (str "hello clojure and " var))
