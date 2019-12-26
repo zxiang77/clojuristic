@@ -1,4 +1,5 @@
-(ns models.login)
+(ns models.login
+  (require [models.user :as user]))
 
 
 ; define a protocol for authentication
@@ -9,16 +10,13 @@
 (defrecord loginform [uname, upass]
     Auth
     (auth []
-      (let [data (lookup "user" uname, upass)] ;; more destructing may needed here
-       )))
+      (let [data (user/lookup-user uname, upass)] ;; more destructing may needed here
+)))
 
 (defrecord tokenform [token]
     Auth
   (auth []
     ()))
-
-(defn lookup [table ..name]
-  ())
 
 (defn makeLogin [uname, upass]
   (->loginform uname upass))
