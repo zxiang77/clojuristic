@@ -1,5 +1,10 @@
 (ns clojuristic.core
-    (:require [models.availability :as aval])
+  (:require
+    [models.availability :as aval]
+    [monger.collection :as mc]
+    [monger.core :as mg])
+    (:import [org.bson.types ObjectId]
+             [com.mongodb DB WriteConcern])
     (:gen-class))
 
 ;(require '[models.availability])
@@ -19,4 +24,10 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (aval/getstr "bla")))
+  ((println (aval/getstr "bla"))
+   (let [conn (mg/connect)
+        db   (mg/get-db conn "monger-test")
+        oid  (ObjectId.)
+        doc  {:first_name "John" :last_name "Lennon"}]
+   (mc/insert db "documents" (merge doc {:_id oid})))
+   (println (aval/getstr "done!"))))
