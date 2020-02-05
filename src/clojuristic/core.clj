@@ -3,8 +3,7 @@
     [models.availability :as aval]
     [monger.collection :as mc]
     [monger.core :as mg])
-    (:import [org.bson.types ObjectId]
-             [com.mongodb DB WriteConcern])
+    (:import [org.bson.types ObjectId])
     (:gen-class))
 
 ;(require '[models.availability])
@@ -22,7 +21,7 @@
 ; with other adapters later.
 ; clojure part should fetch data from db layer and use those for biz logic processing
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Propagate environment variables, start request handler, "
   [& args]
   ((println (aval/getstr "bla"))
    (let [conn (mg/connect)
