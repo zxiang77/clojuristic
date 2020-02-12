@@ -67,6 +67,9 @@
     10 "x is 10"
     "x isn't 5 or 10"))
 
-
+;; method chaining
+(defrecord eg [a b c])
+(let [ak (eg. "a" "b" "c")] (-> ak -> type -> type)
+                            (let [bk (eg. "b" "c" "d")] (meta bk)))
 
 ;; place multimethods here

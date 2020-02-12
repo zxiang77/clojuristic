@@ -10,8 +10,16 @@
 
 
 (defn find
-  "The find method take a query and optional as parameters and then query the mongodb"
-  [query, &options])
+  "The find method take a query and optional as parameters and then query the mongodb. The query object
+  is expected to be a model subclass, which contains table info"
+  [query, &options]
+  (
+    let [conn (mg/connect)
+         table ""
+         db   (mg/get-db conn "monger-test")
+         oid  (Ob jectId.)
+         doc  {:first_name "John" :last_name "Lennon"}]
+    (mc/insert db "documents" (merge doc {:_id oid}))))
 
 (defn insert
   "The find method take a query and optional as parameters and then query the mongodb"
