@@ -10,17 +10,16 @@
 
 
 (defn find
-  "The find method take a query and optional as parameters and then query the mongodb. The query object
-  is expected to be a model subclass, which contains table info"
-  [query, &options]
+  "Example (find (map->user {:id 111})) if I want to search user with an id = 111"
+  [model, & args]
   (
     let [conn (mg/connect)
-         table ""
-         db   (mg/get-db conn "monger-test")
-         oid  (Ob jectId.)
-         doc  {:first_name "John" :last_name "Lennon"}]
-    (mc/insert db "documents" (merge doc {:_id oid}))))
-
+         type (type model)
+         dbName "<get DB Name given type>"
+         collectionName "<get Collection Name given type>"
+         db   (mg/get-db conn dbName)]
+    (mc/find db collectionName model)))
+;; todo: I can use the constructor as the type
 (defn insert
   "The find method take a query and optional as parameters and then query the mongodb"
   [query, &options])
@@ -32,3 +31,9 @@
 (defn update
   "The find method take a query and optional as parameters and then query the mongodb"
   [query, &options])
+
+(defn findById [type id]
+  (find (type {:id id})))
+
+(defn findAll [type]
+  (find (type {})))

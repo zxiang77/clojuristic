@@ -1,7 +1,8 @@
 (ns models.dbMapping
-  (:require [models.user :refer :all])
+  (:import [models.user user])
   )
 
 (def DB_MAPPING {
-    (type (make-user {})) "user"
+    user "user"
   })
+(def :user/db-info {:user/db-name "models" :user/collection-name "users"})

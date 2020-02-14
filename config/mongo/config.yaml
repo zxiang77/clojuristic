@@ -1,12 +1,12 @@
 storage:
-   dbPath: "/home/zxiang/config/mongo/data"
+   dbPath: "config/mongo/data"
    indexBuildRetry: true
    journal:
       enabled: true
       commitIntervalMs: 500
 systemLog:
    destination: file
-   path: "/home/zxiang/config/mongo/data/mongod.log"
+   path: "config/mongo/data/mongod.log"
    logAppend: true
 processManagement:
    fork: true

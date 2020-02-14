@@ -11,4 +11,4 @@ pom.xml.asc
 .hgignore
 .hg/
 .idea/
-config/mongo/data/collection-0--1014954585548212280.wt config/mongo/data/collection-2--1014954585548212280.wt config/mongo/data/collection-4--1014954585548212280.wt config/mongo/data/collection-8--1014954585548212280.wt config/mongo/data/diagnostic.data config/mongo/data/index-1--1014954585548212280.wt config/mongo/data/index-3--1014954585548212280.wt config/mongo/data/index-5--1014954585548212280.wt config/mongo/data/index-6--1014954585548212280.wt config/mongo/data/index-9--1014954585548212280.wt config/mongo/data/journal config/mongo/data/_mdb_catalog.wt config/mongo/data/mongod.lock config/mongo/data/mongod.log config/mongo/data/sizeStorer.wt config/mongo/data/storage.bson config/mongo/data/WiredTiger config/mongo/data/WiredTigerLAS.wt config/mongo/data/WiredTiger.lock config/mongo/data/WiredTiger.turtle config/mongo/data/WiredTiger.wt
+config/mongo/data/*
