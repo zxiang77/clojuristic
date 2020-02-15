@@ -1,5 +1,5 @@
 (ns models.user
-  (:import [models.base table]))
+  (:require [models.base :refer [table coll]]))
 
 (defrecord user [id, name, upass])
 (
@@ -10,7 +10,8 @@
     }
   )
 
-(defmethod table user "user")
+(defmethod table user "info")
+(defmethod coll user "user")
 ;; filter
 (defn lookup-user [uname, upass]
   ())

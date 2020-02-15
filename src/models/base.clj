@@ -5,6 +5,7 @@
   (toQuery [this]))
 
 (defmulti table (fn [obj] [type obj]))
+(defmulti coll (fn [obj] [type obj]))
 
 (defn getTableStringByType
   [type] (get DB_MAPPING type))
