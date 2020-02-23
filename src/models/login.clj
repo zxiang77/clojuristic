@@ -1,5 +1,5 @@
 (ns models.login
-  (require [models.user :as user]))
+  (require [dao.user :as userd]))
 
 
 ; define a protocol for authentication
@@ -10,7 +10,7 @@
 (defrecord loginform [uname, upass]
     Auth
     (auth []
-      (let [data (user/lookup-user uname, upass)] ;; more destructing may needed here
+      (let [data (userd/lookup-user uname, upass)] ;; more destructing may needed here
 )))
 
 (defrecord tokenform [token]

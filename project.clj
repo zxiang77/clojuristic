@@ -5,7 +5,16 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [
                  [org.clojure/clojure "1.10.0"]
-                 [com.novemberain/monger "3.1.0"]]
+                 [com.novemberain/monger "3.1.0"]
+                 ;[ring/ring-core "1.8.0"]
+                 ;[javax.servlet/servlet-api "2.5"]
+                 [compojure "1.6.1"]
+                 [hiccup "1.0.5"]
+                 [ring/ring-defaults "0.3.2"]]
+  :plugins [[lein-ring "0.12.5"]]
+  :ring {:handler api.restful.base/app}
   :main ^:skip-aot clojuristic.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}
+             :dev {:dependencies [[javax.servlet/servlet-api "2.5"]
+                                  [ring/ring-mock "0.3.2"]]}})
