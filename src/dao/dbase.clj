@@ -29,8 +29,8 @@
   "The find method take a query and optional as parameters and then query the mongodb"
   [model, & options]
   (let [type (type model)
-        dbName (table type)
-        coll (coll type)
+        dbName (table model)
+        coll (coll model)
         query (parse model)]
     (mc/insert dbName coll query)))
 
@@ -63,6 +63,9 @@
 
 (defn findById [type id]
   (find (type {:id id})))
+;
+;(defn findAll [type]
+;  (find (type {})))
 
-(defn findAll [type]
-  (find (->'type {})))
+;(defmacro empty-model [type]
+;  (let [constr ]))
