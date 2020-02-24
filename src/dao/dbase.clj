@@ -28,11 +28,12 @@
 (defn insert
   "The find method take a query and optional as parameters and then query the mongodb"
   [model, & options]
-  (let [type (type model)
+  (let [conn (mg/connect)
         dbName (table model)
         coll (coll model)
+        db   (mg/get-db conn dbName)
         query (parse model)]
-    (mc/insert dbName coll query)))
+    (mc/insert db coll query)))
 
 (defn remove
   "The find method take a query and optional as parameters and then query the mongodb"
