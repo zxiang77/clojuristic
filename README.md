@@ -4,9 +4,12 @@ FIXME: description
 
 ## Installation
 
-Download from http://example.com/FIXME.
-
 ## Usage
+The project used `Compojure` to start server.  Run the following 
+to start the server. The default port is (?)
+```bash
+lein ring server-headlesslein ring server-headless
+```
 
 FIXME: explanation
 
