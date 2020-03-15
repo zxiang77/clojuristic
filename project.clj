@@ -10,6 +10,7 @@
                  ;[javax.servlet/servlet-api "2.5"]
                  [compojure "1.6.1"]
                  [hiccup "1.0.5"]
+                 [reagent "0.10.0"]
                  [ring/ring-defaults "0.3.2"]]
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler api.restful.base/app}
