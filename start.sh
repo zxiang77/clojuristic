@@ -2,4 +2,7 @@
 # start backend
 lein ring server-headless &
 # start frontend
-npm run --prefix start
+cd client
+npm run start &
+cd ..
+mongod -f config/mongo/config.yaml

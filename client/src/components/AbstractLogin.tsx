@@ -1,16 +1,28 @@
 import {ChangeEventHandler, MouseEventHandler, PureComponent, ReactNode} from "react";
+import {login} from "../cljstic/api";
+
 interface Props {}
 
 interface State {
     userName: string;
     password: string;
+	registerModalOpen: boolean;
 
 }
 export default abstract class AbstractLogin extends PureComponent<Props, State> {
     state = {
         userName: '',
         password: '',
+		registerModalOpen: false,
     };
+
+	onClickRegister: MouseEventHandler<HTMLElement> = (e) => {
+		this.setState({registerModalOpen: true});
+	};
+
+	onClickModalClose = () => {
+		this.setState({registerModalOpen: false});
+	};
 
     onUserNameChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const userName = e.target.value;
@@ -23,15 +35,8 @@ export default abstract class AbstractLogin extends PureComponent<Props, State> 
     };
 
     onClickSubmit: MouseEventHandler = (e) => {
-        const result = fetch('/api/user')
-        // @ts-ignore
-            .then(e => e.body.getReader())
-            .then((e) => {
-                e.read().then(({done, value}) => {
-                    // @ts-ignore
-                    console.log(value.toString('base64'))
-                })
-            })
+		const {userName, password} = this.state;
+        const result = login({userName, password});
     };
 
     abstract render(): ReactNode;
