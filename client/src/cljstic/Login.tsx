@@ -11,7 +11,7 @@ export default class Login extends AbstractLogin {
             <label>password</label>
             <input name='password' type='password' onChange={this.onPasswordChange} /><br/>
             <button name='submit' type="button" onClick={this.onClickSubmit}>Submit</button>
-			<a href='javascript:void(0)' onClick={this.onClickRegister}>Register</a>
+            <button name='register' type="button" onClick={this.onClickRegister}>Register</button>
 			<RegisterModal
 				isOpen={registerModalOpen}
 				onRequestClose={this.onClickModalClose} />

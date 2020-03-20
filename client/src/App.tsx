@@ -32,6 +32,7 @@ class App extends PureComponent<Props, State> {
 
 	render() {
 		const {isAuthenticated} = this.state;
+		console.log(document, "hello");
 		// the authenticating process first find token, if no token/ token invalid then redirect to login
 		return (
 			<Router>

@@ -12,7 +12,7 @@
            ;(GET "/:id" [id] (html [:h1 (str "Hello user " id)]))
            user-route
            (route/not-found "Not Found"))
-
+;; todo: https://ring-clojure.github.io/ring/ring.middleware.cookies.html cookie implementation
 ;; todo: provide a function to return some base routes for common tasks, e.g.: get<model>ById
 (def app
   (wrap-defaults app-routes (assoc-in site-defaults [:security :anti-forgery] false)))

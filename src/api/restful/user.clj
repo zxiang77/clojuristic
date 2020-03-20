@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [hiccup.core :refer :all]
             [svc.user :as usersvc]
+            [clojure.data.json :as json]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 ;;
@@ -10,4 +11,5 @@
   (POST "/" [uname upass]
     (usersvc/create uname upass)
     (html [:h1 (str "Hello user " uname)]))
+  (POST "/seaseme" [] (json/write-str {:isAuthenticated true}))
   ))
