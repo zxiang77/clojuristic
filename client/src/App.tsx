@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {PureComponent, useState} from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -9,24 +9,44 @@ import {
 import './App.css';
 import Login from './cljstic/Login'
 import Routes from "./cljstic/routes/Routes";
+import logo from './logo.svg';
 
+interface Props {
 
+}
 
-function App() {
-	const [isAuthenticated, userHasAuthenticated] = useState(false);
-	const [isAuthenticating, userIsAuthenticating] = useState(true);
-	// the authenticating process first find token, if no token/ token invalid then redirect to login
-  return (
-  	  <Router>
-		<div className="App">
-		  	<header className="App-header">
-				Login
-				<Login />
-		  	</header>
-		</div>
-		<Routes />
-  	  </Router>
-  );
+interface State {
+	isAuthenticated: boolean;
+}
+
+class App extends PureComponent<Props, State> {
+	state = {
+		isAuthenticated: false
+	};
+
+	setUserAuthenticated = (isAuthenticated: boolean): void => {
+		if (isAuthenticated) {
+			this.setState({isAuthenticated})
+		}
+	};
+
+	render() {
+		const {isAuthenticated} = this.state;
+		// the authenticating process first find token, if no token/ token invalid then redirect to login
+		return (
+			<Router>
+				{isAuthenticated
+					? <img src={logo} className="App-logo" alt="logo" />
+					: <div className="App">
+						<header className="App-header">
+							Login
+							<Login setUserAuthenticated={this.setUserAuthenticated} />
+						</header>
+					</div>}
+				<Routes />
+			</Router>
+		);
+	}
 }
 
 export default App;

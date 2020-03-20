@@ -18,10 +18,10 @@ export default class Routes extends PureComponent<Props, State> {
 				<Redirect to="/login" />
 			</Route>
 			<Route exact path="/">
-				<Login />
+				<Login setUserAuthenticated={(a) => {}} />
 			</Route>
 			<Route path="*">
-				<Login />
+				<Login setUserAuthenticated={(a) => {}} />
 			</Route>
 		</Switch>
 	}

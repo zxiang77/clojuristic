@@ -1,7 +1,9 @@
 import {ChangeEventHandler, MouseEventHandler, PureComponent, ReactNode} from "react";
 import {login} from "../cljstic/api";
 
-interface Props {}
+interface Props {
+    setUserAuthenticated: (success: boolean) => void;
+}
 
 interface State {
     userName: string;
@@ -34,10 +36,13 @@ export default abstract class AbstractLogin extends PureComponent<Props, State> 
         this.setState({password})
     };
 
-    onClickSubmit: MouseEventHandler = (e) => {
+    onClickSubmit: MouseEventHandler = async (e) => {
 		const {userName, password} = this.state;
-        const result = login({userName, password});
+        const {setUserAuthenticated} = this.props;
+        const result = await login({userName, password});
+        setUserAuthenticated(result.isAuthenticated);
     };
 
+    // The only thing different for login should be its view
     abstract render(): ReactNode;
 }
