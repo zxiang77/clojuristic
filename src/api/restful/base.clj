@@ -16,3 +16,6 @@
 ;; todo: provide a function to return some base routes for common tasks, e.g.: get<model>ById
 (def app
   (wrap-defaults app-routes (assoc-in site-defaults [:security :anti-forgery] false)))
+
+;; todo: implement middleware here and redirect to /login if no login token specified
+;; 	or if token exists, validate and create a user profile
