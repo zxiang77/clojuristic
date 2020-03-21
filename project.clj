@@ -12,6 +12,7 @@
                  [hiccup "1.0.5"]
                  [ring/ring-json "0.5.0"]
                  [org.clojure/data.json "1.0.0"]
+                 [org.clojure/tools.logging "1.0.0"]
                  [reagent "0.10.0"]
                  [ring/ring-defaults "0.3.2"]]
   :plugins [[lein-ring "0.12.5"]]

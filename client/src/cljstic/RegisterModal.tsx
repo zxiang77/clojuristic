@@ -44,7 +44,7 @@ export default class RegisterModal extends PureComponent<Props, State> {
 			<label>Username</label>
 			<input name='userName' onChange={this.onUserNameChange} /><br/>
 			<label>Email</label>
-			<input name='email' onChange={this.onEmailChange} /><br/>
+			<input name='email' type='email' onChange={this.onEmailChange} /><br/>
 			<label>password</label>
 			<input name='password' type='password' onChange={this.onPasswordChange} /><br/>
 			<button name='submit' type="button" onClick={this.onClickSubmit}>Submit</button>
