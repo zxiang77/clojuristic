@@ -30,7 +30,7 @@ export default class RegisterModal extends PureComponent<Props, State> {
 	};
 
 
-	onClickSubmit: MouseEventHandler = (e) => {
+	onClickRegister: MouseEventHandler = (e) => {
 		const {email, userName, password} = this.state;
 		const result = register({userName, password, email});
 	};
@@ -47,7 +47,7 @@ export default class RegisterModal extends PureComponent<Props, State> {
 			<input name='email' type='email' onChange={this.onEmailChange} /><br/>
 			<label>password</label>
 			<input name='password' type='password' onChange={this.onPasswordChange} /><br/>
-			<button name='submit' type="button" onClick={this.onClickSubmit}>Submit</button>
+			<button name='submit' type="button" onClick={this.onClickRegister}>Submit</button>
 		</Modal>
 	}
 }

@@ -17,10 +17,11 @@ export const login = ({userName, password}: UserCred): Promise<LoginResponse> =>
 
 type RegisterAccount = { userName: string; password: string; email: string };
 export const register = (registerAccount: RegisterAccount) => {
+	console.log(JSON.stringify(registerAccount));
 	fetch("/api/user/register", {
-		method: 'POST',
+		method: 'post',
 		body:    JSON.stringify(registerAccount),
-		headers: { 'Content-Type': 'application/json' },
+		headers: { 'Content-Type': 'application/json' }
 	})
 		.then(e => e.text())
 		.then(e => console.log(e))

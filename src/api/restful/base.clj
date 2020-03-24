@@ -3,6 +3,7 @@
             [compojure.route :as route]
             [hiccup.core :refer :all]
             [api.restful.user :refer :all]
+            [ring.middleware.json :refer [wrap-json-body]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 ;;; defrest "url" "other mapping" (...code...)
@@ -10,7 +11,7 @@
 
 (defroutes app-routes
            ;(GET "/:id" [id] (html [:h1 (str "Hello user " id)]))
-           user-route
+           (wrap-json-body user-route)
            (route/not-found "Not Found"))
 ;; todo: https://ring-clojure.github.io/ring/ring.middleware.cookies.html cookie implementation
 ;; todo: provide a function to return some base routes for common tasks, e.g.: get<model>ById

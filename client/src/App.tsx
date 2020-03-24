@@ -36,14 +36,9 @@ class App extends PureComponent<Props, State> {
     return (
         <Router>
           {isAuthenticated
-              ? <img src={logo} className="App-logo" alt="logo" />
-              : <div className="App">
-                <header className="App-header">
-                  Login
-                  <Login setUserAuthenticated={this.setUserAuthenticated} />
-                </header>
-              </div>}
-          <Routes />
+              ? <Redirect to="/" /> // or history page
+              : <Redirect to="/login"/>}
+          <Routes onLogin={this.setUserAuthenticated} />
         </Router>
     );
   }
