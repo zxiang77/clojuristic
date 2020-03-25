@@ -19,7 +19,7 @@
            pw :password
            email :email
            } body
-          validatedUser (-> )]
+          user (usersvc/validate {:name uname :upass pw :email email})]
       )
     (println (clojure.string/join ", " [body])))
   ))
