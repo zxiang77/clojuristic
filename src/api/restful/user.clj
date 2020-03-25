@@ -14,6 +14,13 @@
   (POST "/seaseme" [] (json/write-str {:isAuthenticated true}))
   (POST "/register" {body :body}
     ;; todo: complete the register logic and other user apis
+    (let [{
+           uname :userName
+           pw :password
+           email :email
+           } body
+          validatedUser (-> )]
+      )
     (println (clojure.string/join ", " [body])))
   ))
 ;; test wget
