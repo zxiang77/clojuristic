@@ -5,7 +5,6 @@
             [models.user :as userm]
             [clojure.data.json :as json]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
-
 ;;
 (defroutes user-route (context "/api/user" []
   (GET "/" [id] (html [:h1 (str "Hello user " id)]))

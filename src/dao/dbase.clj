@@ -34,7 +34,7 @@
          collectionName (coll model)
          db   (mg/get-db conn dbName)
          query (parse model)]
-    (mc/find-maps db collectionName query args)))
+    (mc/find-maps db collectionName query)))
 
 ;; todo: I can use the constructor as the type
 (defn db-insert
