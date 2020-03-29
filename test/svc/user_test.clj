@@ -24,9 +24,21 @@
     (is (= (validateEmail "-12.") false))
     (is (= (validateEmail "-12.@gmail.com") false))
     (is (= (validateEmail "121.@-gmail.com") false))
-    (is (= (validateEmail "verrrrrrrrrrrrrrrrrrrrrrrrrrrylooooooong@gmail.com") false))
+    (is (= (validateEmail "verrr1111111111111111111111111111111111111111111111rrrrrrrrrrrrrrrrrrrrrrrrylooooooong@gmail.com") false))
     )
   (testing "should pass on valid email"
     (is (= (validateEmail "att@test") true))
     (is (= (validateEmail "att@test.com") true))
     ))
+
+(deftest validate-password-test
+  (testing "should fail on invalid password"
+    (is (= (validatePass "@1") false))
+    )
+  (testing "should pass on valid password"
+    (is (= (validatePass "att@test") true))
+    (is (= (validatePass "=[]{}|;':\",./<>?") true))
+    (is (= (validatePass "att!@#$%^&*()_+-") true))
+    ))
+
+

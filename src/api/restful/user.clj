@@ -19,7 +19,7 @@
            pw "password"
            email "email"
            } body
-          result (usersvc/create (userm/map->user {:name uname :upass pw :email email}))]
+          result (usersvc/create (userm/map->user {:name uname :password pw :email email}))]
       ;(println "done creation" body (type(second(keys body))) (get body "email") uname)
       (println result)
       (if (= true result)

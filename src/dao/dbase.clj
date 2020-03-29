@@ -13,19 +13,31 @@
   (into {} (filter (fn [v] (not= (second v) :skip)) query)))
 
 
-(defn find
+(defn db-find
   "Example (find (map->user {:id 111})) if I want to search user with an id = 111"
   [model, & args]
   (
     let [conn (mg/connect)
-         type (type model)
-         dbName (table type)
-         collectionName (coll type)
+         dbName (table model)
+         collectionName (coll model)
          db   (mg/get-db conn dbName)
          query (parse model)]
+
     (mc/find db collectionName query)))
+
+(defn db-find-maps
+  "Example (find (map->user {:id 111})) if I want to search user with an id = 111"
+  [model, & args]
+  (
+    let [conn (mg/connect)
+         dbName (table model)
+         collectionName (coll model)
+         db   (mg/get-db conn dbName)
+         query (parse model)]
+    (mc/find-maps db collectionName query args)))
+
 ;; todo: I can use the constructor as the type
-(defn insert
+(defn db-insert
   "The find method take a query and optional as parameters and then query the mongodb"
   [model, & options]
   (let [conn (mg/connect)
@@ -35,7 +47,7 @@
         query (parse model)]
     (mc/insert db coll query)))
 
-(defn remove
+(defn db-remove
   "The find method take a query and optional as parameters and then query the mongodb"
   [model, & options]
   (let [type (type model)
@@ -44,7 +56,7 @@
         query (parse model)]
     (mc/remove dbName coll query)))
 
-(defn update
+(defn db-update
   "The find method take a query and optional as parameters and then query the mongodb
   may need to override :multi with & options"
   [model, update, & options]
@@ -63,7 +75,7 @@
     (mc/aggregate dbName coll queries)))
 
 (defn findById [type id]
-  (find (type {:id id})))
+  (db-find (type {:id id})))
 ;
 ;(defn findAll [type]
 ;  (find (type {})))
