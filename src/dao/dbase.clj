@@ -36,7 +36,6 @@
          query (parse model)]
     (mc/find-maps db collectionName query)))
 
-;; todo: I can use the constructor as the type
 (defn db-insert
   "The find method take a query and optional as parameters and then query the mongodb"
   [model, & options]

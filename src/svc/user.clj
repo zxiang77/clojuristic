@@ -5,7 +5,7 @@
             [dao.user :as userd])
   (:import [org.bson.types ObjectId]
            (models.user user)
-           (java.math BigInteger)
+           (java.util.regex Pattern)
            (org.apache.commons.codec.digest DigestUtils)))
 
 (defn matches [regex expr]
@@ -17,10 +17,10 @@
 
 (def EMAIL_REGEX (re-pattern "[A-z0-9][A-z0-9!#$%&'*+\\/=?^_`{|}~-]*@[A-z0-9][A-z0-9\\-]*(\\.[A-z0-9][A-z0-9\\-]*)*"))
 
-(defn between? [num min max]
+(defn between? [^Long num ^Long min ^Long max]
   (and (>= num min) (<= num max)))
 
-(defn validate-field [regex field min max]
+(defn validate-field [^Pattern regex ^String field ^Long min ^Long max]
   (if (between? (count field) min max)
     (matches regex field) false))
 
@@ -31,7 +31,6 @@
   (>= (count (based/db-find-maps (make-user {:email email}))) 1))
 
 ;; (?:"?([^"]*)"?\s)?(?:<?(.+@[^>]+)>?) good to know, matches "Joe Doe" <joedoe@example.com> with capturing group
-;; todo impl
 (defn validateName [^String name]
   (and
     (validate-field NAME_REGEX name 5 20)))
@@ -39,7 +38,7 @@
 (defn validateEmail [^String email]
   (validate-field EMAIL_REGEX email 3 64))
 
-(defn validatePass [^ String pass]
+(defn validatePass [^String pass]
   (validate-field PASSWORD_REGEX pass 6 45))
 
 ;; check if existing user exists
@@ -51,19 +50,11 @@
         emailValidated (validateEmail (:email user))
         nameExists (and nameValidated (username-exists? (:name user)))
         emailExists (and emailValidated (email-exists? (:email user)))]
-    (println "exists result" nameExists emailExists)
     (cond
       (or nameExists emailExists) {:nameExists nameExists :emailExists emailExists}
       (and nameValidated passValidated emailValidated) user
       :else {:name nameValidated :password passValidated :email emailValidated}
       )))
-
-(defn testcond [n]
-  (cond
-    (> n 5) "larger 5"
-    (> n 3) "larger 3"
-    :else "other"
-        ))
 
 ;; Reference: https://gist.github.com/jizhang/4325757 , can use BigInteger as well
 (defn post-password [^String password]
@@ -76,7 +67,7 @@
   (assoc r-user :password (post-password (:password r-user)) :id (ObjectId.)))
 
 ;; make i should consider putting the validation here
-(defn create [r-user]
+(defn create [^user r-user]
   (let [result (validate r-user)]
     (if (instance? user result)
       (let [completeUser (post-process r-user)] ;; %) indicates it takes one param

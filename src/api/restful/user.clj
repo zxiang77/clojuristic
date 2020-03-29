@@ -8,6 +8,7 @@
 ;;
 (defroutes user-route (context "/api/user" []
   (GET "/" [id] (html [:h1 (str "Hello user " id)]))
+  ;; todo: impl next, validate user
   (POST "/" [uname upass]
     (usersvc/create uname)
     (html [:h1 (str "Hello user " uname)]))
@@ -19,8 +20,6 @@
            email "email"
            } body
           result (usersvc/create (userm/map->user {:name uname :password pw :email email}))]
-      ;(println "done creation" body (type(second(keys body))) (get body "email") uname)
-      (println result)
       (if (= true result)
         (ring.util.response/response "")
         {:status  303
