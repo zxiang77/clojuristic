@@ -1,6 +1,7 @@
 import React, {ChangeEventHandler, MouseEventHandler, PureComponent} from "react";
 import Modal from "react-modal";
 import {login, register} from "./api";
+import '../css/form.css'
 
 interface Props {
 	isOpen: boolean;
@@ -41,13 +42,17 @@ export default class RegisterModal extends PureComponent<Props, State> {
 			isOpen={isOpen}
 			onRequestClose={onRequestClose}
 			shouldCloseOnEsc={true}>
-			<label>Username</label>
-			<input name='userName' onChange={this.onUserNameChange} /><br/>
-			<label>Email</label>
-			<input name='email' type='email' onChange={this.onEmailChange} /><br/>
-			<label>password</label>
-			<input name='password' type='password' onChange={this.onPasswordChange} /><br/>
-			<button name='submit' type="button" onClick={this.onClickRegister}>Submit</button>
+				<div className='loader-style'>
+					<label>Username</label>
+					<input name='userName' onChange={this.onUserNameChange} /><br/>
+					<label>Email</label>
+					<input name='email' type='email' onChange={this.onEmailChange} /><br/>
+					<label>password</label>
+					<input name='password' type='password' onChange={this.onPasswordChange} /><br/>
+					<label />
+					<button name='submit' type="button" onClick={this.onClickRegister}>Submit</button>		
+				</div>
+			
 		</Modal>
 	}
 }
