@@ -7,22 +7,23 @@ interface LoginResponse {
 	isAuthenticated: boolean;
 }
 
-export const login = ({userName, password}: UserCred): Promise<LoginResponse> => {
-	return fetch("/api/user/seaseme", {
+export const login = async ({userName, password}: UserCred): Promise<LoginResponse> => {
+	const e = await fetch("/api/user/login", {
 		method: 'POST',
-		body:    JSON.stringify({userName, password}),
+		body: JSON.stringify({ userName, password }),
 		headers: { 'Content-Type': 'application/json' },
-	}).then(e => e.json());
+	});
+	return await e.json();
 };
 
 type RegisterAccount = { userName: string; password: string; email: string };
-export const register = (registerAccount: RegisterAccount) => {
+export const register = async (registerAccount: RegisterAccount) => {
 	console.log(JSON.stringify(registerAccount));
-	fetch("/api/user/register", {
+	const e = await fetch("/api/user/register", {
 		method: 'post',
-		body:    JSON.stringify(registerAccount),
+		body: JSON.stringify(registerAccount),
 		headers: { 'Content-Type': 'application/json' }
-	})
-		.then(e => e.text())
-		.then(e => console.log(e))
+	});
+	const e_1 = await e.text();
+	return console.log(e_1);
 };

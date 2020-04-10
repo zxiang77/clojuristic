@@ -52,7 +52,6 @@ export default class RegisterModal extends PureComponent<Props, State> {
 					<label />
 					<button name='submit' type="button" onClick={this.onClickRegister}>Submit</button>		
 				</div>
-			
 		</Modal>
 	}
 }

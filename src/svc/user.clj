@@ -62,6 +62,12 @@
        .getBytes
        DigestUtils/sha256Hex))
 
+(defn verify [^String uname ^String upass]
+  (let [hashed-pass (post-password upass)
+        user (based/db-find-maps (make-user {:name uname}))]
+    (println (str "record " (first user) hashed-pass))
+    (and (== (count user) 1) (= hashed-pass (:password (first user))))))
+
 (defn post-process [r-user]
   "post processing a user, add salt and hashing for a user"
   (assoc r-user :password (post-password (:password r-user)) :id (ObjectId.)))

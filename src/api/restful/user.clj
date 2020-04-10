@@ -13,6 +13,17 @@
     (usersvc/create uname)
     (html [:h1 (str "Hello user " uname)]))
   (POST "/seaseme" [] (json/write-str {:isAuthenticated true}))
+  (POST "/login" {body :body}
+    (
+      let [{uname "userName"
+            pw "password"} body]
+      (println (str "access from " uname))
+      (if (usersvc/verify uname pw)
+        (ring.util.response/response (json/write-str {:isAuthenticated true}))
+        {:status  401
+         :headers {}
+         :body    "Access denied."})
+      ))
   (POST "/register" {body :body}
     (let [{
            uname "userName"
