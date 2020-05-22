@@ -1,8 +1,7 @@
 (ns svc.user
   (:require [dao.dbase :as based]
             [models.user :as userm :refer :all]
-            [clojure.string :as string]
-            [dao.user :as userd])
+            [clojure.string :as string])
   (:import [org.bson.types ObjectId]
            (models.user user)
            (java.util.regex Pattern)

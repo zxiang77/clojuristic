@@ -2,6 +2,7 @@
   (:require
     [models.availability :as aval]
     [monger.collection :as mc]
+    [api.restful.base :as api]
     [monger.core :as mg])
     (:import [org.bson.types ObjectId])
     (:gen-class))
@@ -23,10 +24,5 @@
 (defn -main
   "Propagate environment variables, start request handler, "
   [& args]
-  ((println (aval/getstr "bla"))
-   (let [conn (mg/connect)
-        db   (mg/get-db conn "monger-test")
-        oid  (ObjectId.)
-        doc  {:first_name "John" :last_name "Lennon"}]
-   (mc/insert db "documents" (merge doc {:_id oid})))
-   (println (aval/getstr "done!"))))
+  (api/app)
+  )

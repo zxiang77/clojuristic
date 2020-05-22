@@ -50,8 +50,10 @@
     false))
 
 ;; when is used when only 1 then no else
-(when (neg? x)
+(let [x 111]
+  (when (neg? x)
   (throw (RuntimeException. (str "x must be positive: " x))))
+)
 
 ;; it's for a series of if conditions, :else is optional
 (let [x 11]
