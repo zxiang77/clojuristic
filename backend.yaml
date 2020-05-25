@@ -6,29 +6,23 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webapp 
+      run: webapp 
   template:
     metadata:
-      labels: app
+      labels:
+        run: webapp
     spec:
       containers:
         - name: backend
           image: backend:latest
-          volume: 
+          volumeMounts: 
             - mountPath: /app
               name: backend-src-vol
           ports:
             - containerPort: 3000
-        - name: db
-          image: mongo:latest
-          ports:
-            - containerPort: 27017
-        - name: frontend
-          image: frontend:latest
-          ports: 8080
-      volume:
+      volumes:
         - name: backend-src-vol
           hostPath:
-            /Users/ziliz/projects/clojuristic
-          type:
-            Directory
+            path: src/
+            type: Directory
+# todo: create the rest of the application and write docs for huohuo
