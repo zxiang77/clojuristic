@@ -42,8 +42,8 @@ open new files in neotree:
 |: open with horizontal split
 open terminal: SPC SPC term RET
 
-TODO:
-setup the save session data on close for spacemacs
-setup kube yaml file
+TODO: Bayonne, 500 Bayonne Crossing Way
+s Bayonne, 500 Bayonne Crossing Wayetup kube yaml file
 test debugging with the new setup
 setup the logging for all parts
+generate yaml file from yaml template (helm ?)

@@ -6,14 +6,30 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: webapp 
   template:
     metadata:
-      labels:
-        app: backend
+      labels: app
+        app: webapp
     spec:
       containers:
         - name: backend
           image: backend:latest
+          volume: 
+            - mountPath: /app
+              name: backend-src-vol
           ports:
-            - containerPort: 80
+            - containerPort: 3000
+        - name: db
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+        - name: frontend
+          image: frontend:latest
+          ports: 8080
+      volume:
+        - name: backend-src-vol
+          hostPath:
+            /Users/ziliz/projects/clojuristic
+          type:
+            Directory
