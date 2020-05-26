@@ -15,6 +15,7 @@ spec:
       containers:
         - name: backend
           image: backend:latest
+          imagePullPolicy: Never
           volumeMounts: 
             - mountPath: /app
               name: backend-src-vol

@@ -35,6 +35,16 @@ Spec https://clojure.org/guides/spec
 ### That You Think
 ### Might be Useful
 
+## Docker Config
+
+### Configuring local docker registry to minikube
+Reference https://minikube.sigs.k8s.io/docs/handbook/registry/
+
+## Reference
+Multi-stage docker build: https://dev.to/peterj/run-a-react-app-in-a-docker-container-kjn
+
+Local docker registry: https://minikube.sigs.k8s.io/docs/handbook/registry/ 
+
 ## License
 
 Copyright © 2019 FIXME
@@ -49,3 +59,4 @@ Public License, v. 2.0 are satisfied: GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or (at your
 option) any later version, with the GNU Classpath Exception which is available
 at https://www.gnu.org/software/classpath/license.html.
+

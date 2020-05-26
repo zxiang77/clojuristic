@@ -13,4 +13,4 @@ ENTRYPOINT ["npm", "start"]
 # to build this:
 #   docker build -name frontend:latest -f dev.Dockerfile
 # to start:
-#   docker run -v $(pwd)/src:/app/src -v $(pwd)/public:/app/public -p 8080:8080 -it frontend:latest .
+#   docker run -v $(pwd)/src:/app/src -v $(pwd)/public:/app/public -p 8080:8080 -it frontend:latest
