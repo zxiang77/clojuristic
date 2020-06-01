@@ -1,29 +1,68 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
-  name: webapp
+  name: myapp-pv-claim
+  labels:
+    app: myapp 
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      run: webapp 
-  template:
-    metadata:
-      labels:
-        run: webapp
-    spec:
-      containers:
-        - name: backend
-          image: backend:latest
-          imagePullPolicy: Never
-          volumeMounts: 
-            - mountPath: /app
-              name: backend-src-vol
-          ports:
-            - containerPort: 3000
-      volumes:
-        - name: backend-src-vol
-          hostPath:
-            path: src/
-            type: Directory
+  accessModes:
+   - ReadWriteOnce
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: 500M
+# spec:
+#   storageClassName: local-storage
+#   resources:
+#     requests:
+#       storage: 500M
+#   accessModes:
+#     - ReadWriteOnce
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+spec:
+  containers:
+    - name: c-backend
+      image: backend:latest
+      volumeMounts:
+      - name: backend-src 
+        mountPath: /app/src 
+  volumes:
+    - name: backend-src 
+      persistentVolumeClaim:
+        claimName: myapp-pv-claim 
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+  # name: webapp
+# spec:
+  # replicas: 1
+  # selector:
+    # matchLabels:
+      # run: webapp 
+  # template:
+    # metadata:
+      # labels:
+        # run: webapp
+    # spec:
+      # containers:
+        # - name: backend
+          # image: backend:latest
+          # imagePullPolicy: Never
+          # volumeMounts: 
+            # - mountPath: /app
+              # name: backend-src-vol
+          # ports:
+            # - containerPort: 3000
+      # volumes:
+        # - name: backend-src-vol
+          # hostPath:
+            # path: /Users/ziliz/projects/clojuristic/src
+            # type: Directory
 # todo: create the rest of the application and write docs for huohuo
+# todo: only create volume for /data for mongod , use pods for other components
+# needed to figure how to deploy pods

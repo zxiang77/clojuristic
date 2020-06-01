@@ -26,6 +26,15 @@ FIXME: listing of options this app accepts.
 ## Reference
 Spec https://clojure.org/guides/spec
 
+## Testing shortcut
+
+```
+alias kf='kubectl apply -f backend.yaml'
+alias kr='kubectl replace --force -f backend.yaml'
+alias kg='kubectl get pods'
+alias kd='kubectl delete -f backend.yaml'
+alias kdes='kubectl describe pods'
+```
 
 ### Bugs
 
@@ -44,6 +53,10 @@ Reference https://minikube.sigs.k8s.io/docs/handbook/registry/
 Multi-stage docker build: https://dev.to/peterj/run-a-react-app-in-a-docker-container-kjn
 
 Local docker registry: https://minikube.sigs.k8s.io/docs/handbook/registry/ 
+
+Persistent Volumes: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
+Kubernetes API Doc: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14/
 
 ## License
 

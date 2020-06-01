@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: backend
+spec:
+  containers:
+    - name: cbackend
+      image: backend:latest
+      volumeMounts:
+      - name: backend-src 
+        mountPath: /app/src 
+  volumes:
+    - name: backend-src 
+      persistentVolumeClaim:
+      claimName: myapp-pv-claim 
+#
