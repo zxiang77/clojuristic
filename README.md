@@ -49,6 +49,12 @@ alias kdes='kubectl describe pods'
 ### Configuring local docker registry to minikube
 Reference https://minikube.sigs.k8s.io/docs/handbook/registry/
 
+## Kubernetes Config
+Sync the folder to specific Kubernetes node (list all nodes by running `kubectl get nodes` . If running with minikube, you will see the minikube node listed. 
+Try `kubectl describe nodes` to see details of the node. 
+#[https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/](How to label a node). 
+Once a node is labeled, you can: 1) create a local storage from that node; 2) add `nodeSlector` in `Pods.spec` so it can be instantiated on specific node. 
+    
 ## Reference
 Multi-stage docker build: https://dev.to/peterj/run-a-react-app-in-a-docker-container-kjn
 
