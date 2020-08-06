@@ -6,7 +6,10 @@ java_binary(
     main_class = "src.main.MainEntry",
     deps = [
         "@maven//:com_google_inject_guice",
-        "@maven//:io_netty_netty_all"
+        "@netty_deps//:io_netty_netty_all",
+        "@maven//:org_mongodb_mongodb_driver",
+        "@javax//:javax_inject_javax_inject",
+        "@graphql//:com_graphql_java_graphql_java"
     ],
 )
 # maven term: group:artifact:version, and  it will be converted to be delimited by _
