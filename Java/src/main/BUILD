@@ -9,7 +9,9 @@ java_binary(
         "@netty_deps//:io_netty_netty_all",
         "@maven//:org_mongodb_mongodb_driver",
         "@javax//:javax_inject_javax_inject",
-        "@graphql//:com_graphql_java_graphql_java"
+        "@graphql//:com_graphql_java_graphql_java",
+        "@logging//:org_slf4j_slf4j_api",
+
     ],
 )
 # maven term: group:artifact:version, and  it will be converted to be delimited by _
