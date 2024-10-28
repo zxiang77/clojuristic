@@ -10,10 +10,10 @@
     "@types/node": "^12.12.30",
     "react-router-dom": "^5.1.2",
     "react": "^16.13.1",
-    "http-proxy-middleware": "^1.0.2",
+    "http-proxy-middleware": "^3.0.3",
     "react-modal": "^3.11.2",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "typescript": "^3.7.5"
   },
   "devDependencies": {
